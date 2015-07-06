@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
+    <h1>User list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.firstname }}</td>
+                <td>{{ entity.lastname }}</td>
+                <td>{{ entity.age }}</td>
+                <td>{{ entity.email }} </td>
+
+                <td>
+			<form action="{{ path('user_show', { 'id': entity.id }) }}">
+				<button type="submit">Profile</button>
+			</form>
+		</td>
+		<td>
+			<form action="{{ path('user_edit', { 'id': entity.id }) }}">
+				<button type="submit">Edit</button>
+			</form>
+                </td>
+		<td>
+			<form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
+           	{{ form_widget(entity.id) }}
+		<button type="submit">Delete</button>
+        </form>
+		</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<form action="{{ path('user_new') }}">
+		<button type="submit">New user</button>
+	</form>
+{% endblock %}

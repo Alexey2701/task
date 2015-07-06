@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Useraddress list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Zip</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>House</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.zip }}</td>
+                <td>{{ entity.city }}</td>
+                <td>{{ entity.street }}</td>
+                <td>{{ entity.house }}</td>
+		<td>
+			<form action="{{ path('useraddress_show', { 'id': entity.id }) }}">
+				<button type="submit">Profile</button>
+			</form>
+		</td>
+		<td>
+			<form action="{{ path('useraddress_edit', { 'id': entity.id }) }}">
+				<button type="submit">Edit</button>
+			</form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <form action="{{ path('useraddress_new') }}">
+		<button type="submit">New user</button>
+	</form>
+    {% endblock %}

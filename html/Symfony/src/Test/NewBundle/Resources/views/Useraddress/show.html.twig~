@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Useraddress</h1>
+
+    <table class="record_properties">
+	<thead>
+            <tr>
+                <th>Zip</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>House</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ entity.zip }}</td>
+                <td>{{ entity.city }}</td>
+                <td>{{ entity.street }}</td>
+                <td>{{ entity.house }}</td>
+            </tr>
+       
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('useraddress') }}">
+            Back to the list
+        </a>
+    </li>
+    <td>
+	<form action="{{ path('useraddress_edit', { 'id': entity.id }) }}">
+		<button type="submit">Edit</button>
+	</form>
+   </td>
+  <td>
+        <form action="{{ path('useraddress_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+   </td>
+ </tbody>
+    </table>
+{% endblock %}

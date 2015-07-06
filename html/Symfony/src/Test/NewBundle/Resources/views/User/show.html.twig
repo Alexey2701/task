@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>User</h1>
+
+<table class="record_properties">
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                <td>{{ entity.firstname }}</td>
+                <td>{{ entity.lastname }}</td>
+                <td>{{ entity.age }}</td>
+                <td>{{ entity.email }}</td>
+	
+<td>
+	<form action="{{ path('user_edit', { 'id': entity.id }) }}">
+		<button type="submit">Edit</button>
+	</form>
+</td>
+<td>
+	<form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
+		<input type="hidden" name="_method" value="DELETE" />
+		{{ form_widget(delete_form) }}
+		<button type="submit">Delete</button>	
+	</form>
+</td>
+  </tbody>
+    </table>
+<form action="{{ path('user') }}">
+		<button type="submit">Back</button>
+	</form>
+{% endblock %}

@@ -1,0 +1,5 @@
+test_new:
+    resource: "/var/www/html/Symfony/src/Test/NewBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

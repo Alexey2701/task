@@ -1,0 +1,48 @@
+<?php
+
+namespace Test\NewBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class UserType extends AbstractType
+{
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('firstname', 'text')
+            ->add('lastname','text')
+            ->add('age','integer')
+            ->add('email','email');
+	    //->add('useraddress'	, new UseraddressType()
+        //                                       'label' => 'Ссылки к новости',
+         //                                      'type' => 'useraddress',
+          //                                     'addUseraddres' => true,
+           //                                    'removeUseraddres' => true,
+            //                                   'prototype' => true
+                                             // );
+    }
+
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Test\NewBundle\Entity\User'
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'user';
+    }
+}
